@@ -12,8 +12,8 @@ USER user
 RUN mkdir /home/user/stable-diffusion-webui
 # WORKDIR /home/user
 # RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
-WORKDIR /home/user/stable-diffusion-webui
-RUN echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
+# WORKDIR /home/user/stable-diffusion-webui
+# RUN echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
 
 VOLUME /home/user/stable-diffusion-webui/
 
