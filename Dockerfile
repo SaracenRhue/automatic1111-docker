@@ -1,31 +1,20 @@
-FROM nvidia/cuda:12.1.0-base-ubuntu22.04
+FROM nvidia/cuda:12.1.0-base-rockylinux9
 
 # Update package repositories and install dependencies
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata. 
-RUN apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-    libreadline-dev libsqlite3-dev wget curl git llvm libncurses5-dev \
-    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+RUN dnf update -y
 
+RUN dnf install -y wget git python3 python3-pip
 # Add a new user
 RUN useradd -ms /bin/bash user && \
     echo "user:password" | chpasswd
 
-# Install Pyenv
-RUN curl https://pyenv.run | bash
-# Add Pyenv to the shell environment
-ENV PYENV_ROOT /root/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
-# Install Python 3.10.6 using Pyenv
-RUN pyenv install 3.10.6 && \
-    pyenv global 3.10.6
-
+USER user
 WORKDIR /home/user
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR /home/user/stable-diffusion-webui
-RUN pip install --upgrade pip && \
-    pip install wheel && \
-    pip install -r requirements.txt && \
+RUN python3 -m pip install --upgrade pip && \
+    pip3 install wheel && \
+    pip3 install -r requirements.txt && \
     echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
 
 # VOLUME /home/user/stable-diffusion-webui/models/Stable-diffusion
@@ -37,4 +26,4 @@ RUN pip install --upgrade pip && \
 ENV PORT=7860
 EXPOSE 7860
 
-CMD python launch.py
+CMD bash webui.sh
