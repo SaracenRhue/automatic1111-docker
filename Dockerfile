@@ -23,7 +23,8 @@ RUN pyenv install 3.10 && \
 WORKDIR /home/user
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR /home/user/stable-diffusion-webui
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
 # Expose port 7860
 ENV PORT=7860
