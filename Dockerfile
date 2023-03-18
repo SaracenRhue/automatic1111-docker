@@ -9,6 +9,7 @@ RUN useradd -ms /bin/bash user && \
     echo "user:password" | chpasswd
 
 USER user
+RUN mkdir /home/user/stable-diffusion-webui
 # WORKDIR /home/user
 # RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 # WORKDIR /home/user/stable-diffusion-webui
