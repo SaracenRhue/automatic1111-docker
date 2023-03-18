@@ -16,15 +16,21 @@ RUN curl https://pyenv.run | bash
 # Add Pyenv to the shell environment
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
-# Install Python 3.10 using Pyenv
-RUN pyenv install 3.10 && \
-    pyenv global 3.10
+# Install Python 3.10.6 using Pyenv
+RUN pyenv install 3.10.6 && \
+    pyenv global 3.10.6
 
 WORKDIR /home/user
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR /home/user/stable-diffusion-webui
 RUN pip install --upgrade pip && \
+    pip install wheel && \
     pip install -r requirements.txt
+
+# VOLUME /home/user/stable-diffusion-webui/models/Stable-diffusion
+# VOLUME /home/user/stable-diffusion-webui/extensions
+# VOLUME /home/user/stable-diffusion-webui/embeddings
+
 
 # Expose port 7860
 ENV PORT=7860
