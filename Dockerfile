@@ -12,10 +12,7 @@ USER user
 WORKDIR /home/user
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR /home/user/stable-diffusion-webui
-RUN python3 -m venv . && \
-    source ./bin/activate && \
-    pip3 install -r requirements.txt && \
-    echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
+RUN echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
 
 # VOLUME /home/user/stable-diffusion-webui/models/Stable-diffusion
 # VOLUME /home/user/stable-diffusion-webui/extensions
