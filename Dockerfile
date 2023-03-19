@@ -7,7 +7,7 @@ RUN dnf install -y sudo wget git python3 python3-pip mesa-libGL
 # Add a new user
 RUN useradd -ms /bin/bash user && \
     echo "user:password" | chpasswd && \
-    adduser user sudo
+    usermod -aG sudo user
 
 USER user
 WORKDIR /home/user
