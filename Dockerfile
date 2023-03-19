@@ -10,7 +10,7 @@ RUN useradd -ms /bin/bash user && \
 
 USER user
 WORKDIR /home/user
-COPY . .
+COPY setup.sh ./
 RUN mkdir /home/user/stable-diffusion-webui
 
 VOLUME /home/user/stable-diffusion-webui/
@@ -20,4 +20,4 @@ VOLUME /home/user/stable-diffusion-webui/
 ENV PORT=7860
 EXPOSE 7860
 
-CMD bash setuo.sh
+CMD bash setup.sh
