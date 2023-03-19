@@ -9,6 +9,7 @@ if [ ! -d "$dir" ]; then
     echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
     wget -P models/Stable-diffusion https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt
 else
+    echo "Directory is not empty"
     cd "$dir"
 fi
 
