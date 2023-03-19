@@ -10,7 +10,8 @@ RUN useradd -ms /bin/bash user && \
     echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 RUN mkdir /home/user/stable-diffusion-webui && \
-    chmod -R user:user /home/user/stable-diffusion-webui
+    chown -R user:user /home/user/stable-diffusion-webui && \
+    chmod -R user:group /home/user/stable-diffusion-webui
 
 USER user
 WORKDIR /home/user
