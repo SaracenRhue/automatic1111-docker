@@ -9,11 +9,9 @@ RUN useradd -ms /bin/bash user && \
     echo "user:password" | chpasswd
 
 USER user
+WORKDIR /home/user
+COPY . .
 RUN mkdir /home/user/stable-diffusion-webui
-# WORKDIR /home/user
-# RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
-WORKDIR /home/user/stable-diffusion-webui
-# RUN echo 'export COMMANDLINE_ARGS="--listen"' >> ./webui-user.sh
 
 VOLUME /home/user/stable-diffusion-webui/
 
@@ -22,4 +20,4 @@ VOLUME /home/user/stable-diffusion-webui/
 ENV PORT=7860
 EXPOSE 7860
 
-CMD bash webui.sh
+CMD bash setuo.sh
