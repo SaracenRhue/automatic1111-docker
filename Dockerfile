@@ -10,8 +10,7 @@ RUN useradd -ms /bin/bash user && \
 
 WORKDIR /home/user
 COPY setup.sh ./
-RUN mkdir /home/user/stable-diffusion-webui && \
-    chown -R user:sudo /home/user/stable-diffusion-webui
+RUN mkdir /home/user/stable-diffusion-webui
 
 VOLUME /home/user/stable-diffusion-webui/
 
