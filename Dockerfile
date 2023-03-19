@@ -8,11 +8,13 @@ RUN dnf install -y sudo wget git python3 python3-pip mesa-libGL
 RUN useradd -ms /bin/bash user && \
     echo "user:password" | chpasswd&& \
     echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    
+RUN mkdir /home/user/stable-diffusion-webui && \
+    chmod -R a+rwx /home/user/stable-diffusion-webui
 
 USER user
 WORKDIR /home/user
 COPY setup.sh ./
-RUN mkdir /home/user/stable-diffusion-webui
     
 
 VOLUME /home/user/stable-diffusion-webui/
