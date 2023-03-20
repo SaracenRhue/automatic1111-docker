@@ -14,9 +14,8 @@ RUN mkdir /home/user/stable-diffusion-webui && \
     chmod -R +rwx /home/user/stable-diffusion-webui
 
 USER user
-WORKDIR /home/user/stable-diffusion-webui
+WORKDIR /home/user/
 COPY setup.sh ./
-    
 
 VOLUME /home/user/stable-diffusion-webui/
 

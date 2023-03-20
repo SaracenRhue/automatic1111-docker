@@ -1,6 +1,8 @@
 #!/bin/bash
 
-rm -rf setup.sh
+cd /home/user/stable-diffusion-webui
+
+# check if the directory is empty
 if [ ! -e webui.sh ]; then
     echo "Directory is empty"
     git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git .
