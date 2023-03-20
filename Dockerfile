@@ -14,7 +14,7 @@ RUN mkdir /home/user/stable-diffusion-webui && \
     chmod -R +rwx /home/user/stable-diffusion-webui
 
 USER user
-WORKDIR /home/user
+WORKDIR /home/user/stable-diffusion-webui
 COPY setup.sh ./
     
 
